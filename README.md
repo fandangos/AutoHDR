@@ -12,10 +12,10 @@ https://github.com/thexai/xbmc/releases
 
 1. Be sure that Windows HDR is OFF.
 2. If you Windows HDR settings is OFF, keep it off. 
-3. Download all 3 files (AUTOHDR_ON.exe, AUTOHDR_OFF.exe and AUTOHDR.bat) from the release section.
+3. Download AUTOHDR.exe from the release section.
 HERE: https://github.com/fandangos/AutoHDR/releases
-4. Add all the files to your Kodi installation folder. 
-5. Do NOT start Kodi.exe, start AUTOHDR.bat and it will launch Kodi for you. 
+4. Copy the file to your Kodi installation folder. 
+5. Do NOT start Kodi.exe, start AUTOHDR.exe and it will launch Kodi for you. 
 
 FAQ: 
 1. How do I know it's working?
