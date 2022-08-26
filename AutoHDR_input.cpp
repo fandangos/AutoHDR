@@ -1,9 +1,5 @@
 #include "Windows.h"
-#include <stdint.h>
-#include <cstdlib>
-#include <cstring>
-#include <conio.h>
-#include <stdio.h>
+#include <iostream>
 
 void HDR()
 {
@@ -74,7 +70,7 @@ void HDR()
 	}
 }
 
-int main()
+void exec()
 {
 
 	char * pCmd = ::GetCommandLine();
@@ -92,7 +88,6 @@ int main()
 	while (*pCmd == L' ')
 		pCmd++;
 
-
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
 
@@ -100,16 +95,38 @@ int main()
 	si.cb = sizeof(si);
 	ZeroMemory(&pi, sizeof(pi));
 
-	HDR();
+	// Start the child process.
+	if (!CreateProcess(NULL,
+		pCmd,
+		NULL,
+		NULL,
+		FALSE,
+		0,
+		NULL,
+		NULL,
+		&si,    // Pointer to STARTUPINFO structure.
+		&pi)) // Pointer to PROCESS_INFORMATION
+	{
+		puts("Error");
+		return;
+	}
 
-	CreateProcess(NULL, pCmd, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi);
-
-
+	// Wait until child process exits.
 	WaitForSingleObject(pi.hProcess, INFINITE);
-
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
+}
 
+int main()
+{
+
+	//Start HDR
+	HDR();
+
+	//call user executable
+	exec();
+
+	//Turn HDR off
 	HDR();
 
 	return 0;
